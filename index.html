@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <meta name="author" content="Dennis Gläser">
+        <title>Clean Code and Refactoring</title>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/reveal.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/white.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/zenburn.min.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section id="title-slide"
+                         data-background-size="100%"
+                         data-background-image="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                         data-background-opacity="0.5">
+                     <div style="text-align:left; width:60%; background-color:rgba(255,255,255,0.8); box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.85);">
+                         <h2 style="margin:20px">Clean <code>Code</code> and Refactoring</h2>
+                     </div>
+                </section>
+
+                <section data-background-size="100%"
+                         data-background-image="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                         data-background-opacity="0.5">
+                     <div class="textbox">
+                        <h2>Agenda</h2>
+                        <ul>
+                            <li>Motivation</li>
+                            <li>Names / Comments / Functions</li>
+                            <li>Hands-on coding exercise</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <section data-background-size="100%"
+                            data-background-image="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            data-background-opacity="0.5">
+                        <div class="textbox"><h2>Motivation</h2></div>
+                    </section>
+
+                    <section>
+                        <img style="width: 40%" src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2F533452a/MediaObjects/41586_2016_BF533452a_Figd_HTML.jpg"></img>
+                        <small class="fragment">
+                            <ul>
+                                <li>84% of scientists say that developing software is essential to their research. [1]</li>
+                                <li>Incorrect publications have led to a reproducibility and credibility crisi. [2, 3]</li>
+                            </ul>
+                            <p style="text-align:left; font-size: 18px;">
+                                [1] Jo Hannay et al. “How Do Scientists Develop and Use Scientific Software?”<br>
+                                [2] Monya Baker. “1,500 scientists lift the lid on reproducibility”.<br>
+                                [3] Zeeya Merali. “Computational science: Error, why scientific programming does not compute”.<br>
+                            </p>
+                        </small>
+                    </section>
+
+                    <section>
+                        <h3>Researchers...</h3>
+                        <ul>
+                            <li>often lack knowledge about principles and practices of the software engineering discipline. [3, 4]</li>
+                            <li>do not gain reputation for developing software</li>
+                            <li>are pressed to publish results as fast as possible [5]</li>
+                        </ul>
+                        <p style="text-align:left; font-size: 18px;">
+                            [4] Lucas Joppa et al. “Troubling Trends in Scientific Software Use”. <br>
+                            [5] Mark De Rond and Alan N Miller. “Publish or perish: bane or boon of academic life?”
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Consequences</h3>
+                        <ul>
+                            <li>Low code quality</li>
+                            <li>Hard to understand</li>
+                            <li>(maybe) neither published nor documented</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>What is Clean Code?</h3>
+                        <ul>
+                            <li>Term coined by Robert C. Martin</li>
+                            <li>No strict rules, but a set of principles to make code easy to understand, extend and adapt</li>
+                        </ul>
+                        <img style="width:25%" src="https://m.media-amazon.com/images/I/41SH-SvWPxL._SX260_.jpg"></img>
+                    </section>
+
+                    <section>
+                        <p>
+                            “Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. ...[Therefore,] making it easy to read makes it easier to write.” - Robert C. Martin
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Clean Code</h3>
+                        <small>
+                        <p>
+                            “Clean code always looks like it was written by someone who cares.”<br>
+                            - Michael Feathers
+                        </p>
+                        <p>
+                            “Clean code reads like well-written prose.”<br>
+                            - Grady Booch
+                        </p>
+                        <p>
+                            “Clean code can be read, and enhanced by a developer other than its original author.”<br>
+                            - Dave Thomas
+                        </p>
+                        </small>
+                    </section>
+
+                    <section>
+                        <img src="https://miro.medium.com/v2/resize:fit:500/0*HaqsruEqnR5pxQD4"></img>
+                    </section>
+                </section>
+
+                <section>
+                    <section data-background-size="100%"
+                            data-background-image="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                            data-background-opacity="0.5">
+                        <div class="textbox"><h2>Names / Comments / Functions</h2></div>
+                    </section>
+
+                    <section>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            var = 7  # num days in week
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            number_of_days_in_week = 7
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def copy_chars(a1, a2):
+                                for i in range(0, len(a1)):
+                                    a2[i] = a1[i]
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def copy_chars(source, destination):
+                                for i in range(0, len(source)):
+                                    destination[i] = source[i]
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def genymdhms():  # generate date, year, month, day, minutes
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def generate_timestamp():
+                        </code></pre>
+                        <ul class="fragment">
+                            <li>Use names that are pronounceable and searchable</li>
+                            <li>Avoid encodings (unless they are commonly known)</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def do_the_next_thing():
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def apply_neumann_boundary_condition():
+                        </code></pre>
+                        <p class="fragment">Use domain names!</p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/headjs@1.0.3/dist/1.0.0/head.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/js/reveal.min.js"></script>
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                controls: true,
+                // slideNumber: true,
+                keyboard: true,
+                overview: true,
+                center: true,
+                touch: true,
+                loop: false,
+                fragments: true,
+                hideAddressBar: true,
+                previewLinks: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'default', // default/fast/slow
+                backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+                parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+                parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+                parallaxBackgroundHorizontal: null,
+                parallaxBackgroundVertical: null,
+                display: 'block', // The display mode that will be used to show slides
+                dependencies: [
+                    { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                ],
+                });
+        </script>
+    </body>
+</html>
