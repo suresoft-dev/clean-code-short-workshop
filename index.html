@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -128,6 +129,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>❌</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             var = 7  # num days in week
@@ -135,6 +137,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>✅</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             number_of_days_in_week = 7
@@ -142,6 +145,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>❌</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def copy_chars(a1, a2):
@@ -151,6 +155,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>✅</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def copy_chars(source, destination):
@@ -160,6 +165,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>❌</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def genymdhms():  # generate date, year, month, day, minutes
@@ -167,6 +173,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>✅</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def generate_timestamp():
@@ -178,6 +185,7 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>❌</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def do_the_next_thing():
@@ -185,11 +193,203 @@
                     </section>
 
                     <section>
+                        <h2>Names</h2>
                         <large><p>✅</p></large>
                         <pre><code data-trim data-noescape class="hljs python">
                             def apply_neumann_boundary_condition():
                         </code></pre>
                         <p class="fragment">Use domain names!</p>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <small>
+                        <p>
+                            “Don't comment bad code - rewrite it.”<br>
+                            - Brian W. Kernighan and P.J. Plaugher
+                        </p>
+                        <p>
+                            “The proper use of comments is to compensate for our failure to express ourself in code.
+                             Note that I used the word failure. I meant it. Comments are always failures.”<br>
+                            - Robert C. Martin
+                        </p>
+                        </small>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <p class="textbox">
+                            If a comment must be used, it should describe the <em>why</em> and not the <em>what</em> or <em>how</em>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            # check if i is a prime number
+                            prime = True
+                            for j in range(i):
+                                if i % j == 0:
+                                    prime = False
+                                    break
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def is_prime(number: int) -> bool:
+                                for divisor in range(number):
+                                    if number % divisor == 0:
+                                        return False
+                                return True
+                        </code></pre>
+                        <p>Express your intent in code instead of comments</p>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            class Container:
+                                def __init__(self, logger) -> None:
+                                    # The logger associated with this container
+                                    self.logger = logger
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            class MyClass:
+                                # ------- Constructor -------
+                                def __init__(self):
+                                    self.value = 0
+
+                                # ------- Setter -------
+                                def set_value(self, new_value):
+                                    self.value = new_value
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def _is_sad(maybe_sad: str) -> bool:
+                                """Checks if a string is sad
+
+                                Args:
+                                    maybe_sad(str): a string
+                                
+                                Returns:
+                                    bool
+                                """
+                                return ":(" in maybe_sad or "T_T" in maybe_sad
+                        </code></pre>
+                        <p>Don't require the use of doc comments in private functions if they don't add value</p>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim data-noescape class="hljs python">
+                            def make_happy(sad_string: str) -> str:
+                                """Makes a sad string happy
+
+                                Args:
+                                    sad_string(str): A string with sad smileys
+
+                                Returns:
+                                    str
+                                """
+                                if not _is_sad(str):
+                                    return str
+                                return sad_string.replace(":(", ":)").replace("T_T", "^_^")
+                        </code></pre>
+                        <p>Use doc comments in public APIs</p>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>🤔</p></large>
+                        <pre><code data-trim data-noescape data-line-numbers="|4,8" class="hljs python">
+                            def load_config(parser: ConfigParser, config_path: str) -> list[str]:
+                                """
+                                Loads configuration from a config file.
+                                Falls back to the defaults file on file.
+                                """
+                                config = parser.read(config_path)
+                                if not config:
+                                    config = parser.read(".defaults")
+                                return config
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                        <large><p>It's a lie! 😱</p></large>
+                        <pre><code data-trim data-noescape data-line-numbers="4,8" class="hljs python">
+                            def load_config(parser: ConfigParser, config_path: str) -> list[str]:
+                                """
+                                Loads configuration from a config file.
+                                Falls back to the <b><em>defaults</em></b> file on file.
+                                """
+                                config = parser.read(config_path)
+                                if not config:
+                                    config = parser.read(<b><em>".defaults"</em></b>)
+                                return config
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Good comments</h2>
+                        <p>Explanation of intent</p>
+                        <pre><code data-trim class="hljs python">
+                            # We're doing this because...
+                        </code></pre>
+                        <p>Warning</p>
+                        <pre><code data-trim class="hljs python">
+                            # This code could lead to a dead lock, couldn't fix it yet
+                        </code></pre>
+                        <p>Amplification</p>
+                        <pre><code data-trim class="hljs python">
+                            # Cutting out spaces here is important because...
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Functions</h2>
+                        <large><p>❌</p></large>
+                        <pre><code data-trim class="hljs python">
+                            a = [1, 2, 3, 4]
+                            with open("log_a.txt", "w") as f:
+                                for num in a:
+                                    f.write(str(num) + "\n")
+
+                            b = [1, 2, 3, 4]
+                            with open("log_b.txt", "w") as f:
+                                for num in b:
+                                    f.write(str(num) + "\n")
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Functions</h2>
+                        <large><p>✅</p></large>
+                        <pre><code data-trim class="hljs python">
+                            def write_list_to_file(a_list: list[int], filename: str) -> None:
+                                with open(filename, "w") as f:
+                                    for num in a:
+                                        f.write(str(num) + "\n")
+
+                            write_list_to_file(a, "log_a.txt")
+                            write_list_to_file(b, "log_b.txt")
+                        </code></pre>
+                        <p>DRY - Don't repeat yourself!</p>
                     </section>
                 </section>
             </div>
